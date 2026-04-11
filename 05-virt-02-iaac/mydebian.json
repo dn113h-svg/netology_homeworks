@@ -1,0 +1,23 @@
+{
+    "builders": [
+        {
+            "type": "yandex",
+            "token": "xxxxx",
+            "folder_id": "b1g9k2q13k5lfama38tj",
+            "zone": "ru-central1-a",
+            "image_name": "debian-11-docker",
+            "image_description": "my custom debian with docker",
+            "source_image_family": "debian-11",
+            "subnet_id": "e9biq4qu0pqo6a3c1ip1",
+            "use_ipv4_nat": true,
+            "disk_type": "network-hdd",
+            "ssh_username": "debian"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+			"script": "install_packages.sh"
+        }
+    ]
+}
