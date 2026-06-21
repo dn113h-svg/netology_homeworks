@@ -1,0 +1,10 @@
+.DS_Store
+.git
+.gitignore
+.env
+*.pyc
+__pycache__/
+.pytest_cache/
+venv/
+.venv/
+schema.pdf

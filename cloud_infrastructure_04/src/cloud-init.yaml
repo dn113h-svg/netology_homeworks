@@ -1,0 +1,27 @@
+#cloud-config
+package_update: true
+
+output:
+  all: "| tee -a /var/log/cloud-init-output.log"
+
+runcmd:
+  - |
+    set -eux
+    export DEBIAN_FRONTEND=noninteractive
+
+    apt-get update
+    apt-get install -y docker.io
+
+    systemctl enable docker
+    systemctl start docker
+    usermod -aG docker ubuntu
+
+    if apt-cache show docker-compose-plugin >/dev/null 2>&1; then
+      apt-get install -y docker-compose-plugin
+      docker compose version
+    else
+      apt-get install -y docker-compose
+      docker-compose --version
+    fi
+
+    docker --version

@@ -1,0 +1,18 @@
+include:
+  - path: ./proxy.yaml
+
+services:
+  web:
+    image: ${APP_IMAGE}
+    restart: always
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT:-3306}
+      DB_USER: ${DB_USER:-app}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME:-virtd}
+    networks:
+      backend:
+        ipv4_address: 172.20.0.5
+    ports:
+      - "5000:5000"
